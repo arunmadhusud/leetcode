@@ -7,7 +7,7 @@ public:
         }
         priority_queue<pair<int,int>> pq;
         vector<int> result;
-        for (auto elem : num_count)
+        for (pair<int,int> elem : num_count)
         {
             pq.push({elem.second,elem.first});
         }
