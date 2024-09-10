@@ -1,18 +1,18 @@
-// #include <vector>
-// #include <algorithm>
-
 class Solution {
 public:
-    std::vector<int> twoSum(std::vector<int>& nums, int target) {
-        std::vector<int> output;
-        for (auto itr = nums.begin(); itr != nums.end(); ++itr) {
-            auto it_vec = std::find(itr+1, nums.end(), target - (*itr));
-            if (it_vec != nums.end()) {
-                output.push_back(std::distance(nums.begin(), itr));
-                output.push_back(std::distance(nums.begin(), it_vec));
-                break;
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> indices;
+        for (int i = 0; i< nums.size(); i++)
+        {
+            int num_diff = target - nums[i];
+            auto it_vec = std::find(nums.begin() + i + 1, nums.end(), num_diff);
+            if (it_vec!= nums.end())
+            {
+                indices.push_back(i);
+                indices.push_back(it_vec - nums.begin() );
+                return indices;
             }
         }
-        return output;
+    return indices;
     }
 };
