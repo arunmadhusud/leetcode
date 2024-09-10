@@ -1,20 +1,21 @@
 class Solution {
 public:
-    vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        vector<string> str_cpy = strs;
-        vector<vector<string>> output;
-        map<string, vector<string>> mp;
+    std::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs) {
+        std::map<std::string, std::vector<std::string>> anagram_map;
+        std::vector<std::vector<std::string>> result;
 
-        for (int i = 0; i < strs.size(); i++) {
-            string sorted_str = str_cpy[i];
-            sort(sorted_str.begin(), sorted_str.end());
-            mp[sorted_str].push_back(strs[i]);
+        // Group words by their sorted form
+        for (int i = 0; i < strs.size(); ++i) {
+            std::string str_copy = strs[i];
+            std::sort(str_copy.begin(), str_copy.end()); // Sort the string to use as a key
+            anagram_map[str_copy].push_back(strs[i]);
         }
 
-        for (auto& elem : mp) {
-            output.push_back(elem.second);
+        // Collect groups of anagrams
+        for (const auto& entry : anagram_map) {
+            result.push_back(entry.second); // Add the vector of anagrams to the result
         }
 
-        return output;
+        return result;
     }
 };
