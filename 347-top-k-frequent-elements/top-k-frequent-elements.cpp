@@ -1,26 +1,22 @@
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        map<int, int> mp;
-        multimap<int, int, greater<int>> mp_r;
-        vector<int> output;
-
-        // Count frequencies
-        for (int elem : nums) {
-            mp[elem]++;
+        map<int,int> num_count;
+        for (int i = 0; i < nums.size(); i++) {
+            num_count[nums[i]]++;  // Count frequency of each number
         }
-
-        // Reverse map to sort by frequency
-        for (const auto& elem : mp) {
-            mp_r.insert({elem.second, elem.first});
+        priority_queue<pair<int,int>> pq;
+        vector<int> result;
+        for (auto elem : num_count)
+        {
+            pq.push({elem.second,elem.first});
         }
-
-        // Collect the top k frequent elements
-        auto it = mp_r.begin();
-        for (int i = 0; i < k && it != mp_r.end(); ++i, ++it) {
-            output.push_back(it->second);
+        while(k-- && !pq.empty())
+        {
+            result.push_back(pq.top().second);
+            pq.pop();
         }
-
-        return output;
+        return result;
+ 
     }
 };
