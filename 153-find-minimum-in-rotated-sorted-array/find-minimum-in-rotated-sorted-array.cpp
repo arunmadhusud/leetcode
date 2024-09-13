@@ -6,7 +6,7 @@ public:
         int N = nums.size();
         while(low <= high){
             int mid = low + (high-low)/2;
-            if (nums[low] <= nums[high]) return nums[low];
+            // if (nums[low] <= nums[high]) return nums[low];
             // Find previous and next indices using modulo to handle boundaries
             int prev = (mid + N - 1) % N;
             int next = (mid + 1) % N;
