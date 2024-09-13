@@ -6,12 +6,10 @@ public:
         int N = nums.size();
         while(low <= high){
             int mid = low + (high-low)/2;
-            // if (nums[low] <= nums[high]) return nums[low];
-            // Find previous and next indices using modulo to handle boundaries
+            if (nums[low] <= nums[high]) return nums[low];
             int prev = (mid + N - 1) % N;
             int next = (mid + 1) % N;
             
-            // Check if the mid element is the smallest
             if (nums[mid] <= nums[prev] && nums[mid] <= nums[next]) {
                 return nums[mid];
             }
