@@ -4,14 +4,12 @@ public:
         int low = 0;
         int high = nums.size() - 1;
         int N = nums.size();
-        int min_elem;
         int min_idx;
         int result = -1;
         while(low <= high){
             int mid = low + (high-low)/2;
             if (nums[low] <= nums[high])
             {
-                min_elem = nums[low];
                 min_idx = low;
                 break;
             }
@@ -20,7 +18,6 @@ public:
             
             if (nums[mid] <= nums[prev] && nums[mid] <= nums[next])            
             {
-                min_elem = nums[mid];
                 min_idx = mid;
                 break;
             }
