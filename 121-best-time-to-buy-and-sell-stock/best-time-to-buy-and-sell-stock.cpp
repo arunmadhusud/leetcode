@@ -6,7 +6,6 @@ public:
         int profit = 0;
         while(right<prices.size())
         {
-                       
             profit = max(profit,prices[right] - prices[left]);
             if (prices[left]>prices[right]) left = right; 
             right++;
