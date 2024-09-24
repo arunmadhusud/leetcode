@@ -3,7 +3,7 @@ public:
     bool isHappy(int n) {
         int slwptr = n;
         int fastptr = n;
-        while(fastptr!=1){
+        while(true){
             slwptr = sumNum(slwptr);
             fastptr = sumNum(sumNum(fastptr));
             if (fastptr==1) return true;
