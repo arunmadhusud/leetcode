@@ -12,10 +12,6 @@ public:
             subString.insert(elem);     
             maxLength = max(maxLength,(int)subString.size());
         }
-        return maxLength;
-
-
-
-        
+        return maxLength;        
     }
 };
