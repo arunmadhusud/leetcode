@@ -2,24 +2,22 @@ class Solution {
 public:
     bool isHappy(int n) {
         int slwptr = n;
-        int fastptr = n;
-        while(true){
+        int fstptr = n;
+        while(fstptr!=1){
             slwptr = sumNum(slwptr);
-            fastptr = sumNum(sumNum(fastptr));
-            if (fastptr==1) return true;
-            if(slwptr==fastptr) return false;
+            fstptr = sumNum(sumNum(fstptr));
+            if(fstptr==1) return true;
+            if(fstptr==slwptr) return false;
         }
-        return true;
-        
+        return true;        
     }
-    int sumNum(int n){
+    int sumNum(int num){
         int sum = 0;
-        while(n!=0){
-            int digit = n % 10;
-            sum += digit*digit;
-            n = n / 10;
+        while(num!=0){
+            int digit = num % 10;
+            sum += digit * digit;
+            num = num /10;
         }
         return sum;
-        
     }
 };
