@@ -1,21 +1,22 @@
 class Solution {
- public:
-  vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-    vector<int> result(nums1.size(),-1);
-    stack<int> elem_stack;
-    unordered_map<int,int> greatMP;
-    for(int elem: nums2){
-        while(!elem_stack.empty() && elem_stack.top() < elem){
-            greatMP[elem_stack.top()] = elem;
-            elem_stack.pop();
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> result(nums1.size(),-1);
+        stack<int> stIdx;
+        unordered_map<int,int> grtMP;
+        
+        for(int i = 0; i < nums2.size(); i++){
+            while(!stIdx.empty() && nums2[stIdx.top()] < nums2[i]){
+                grtMP[nums2[stIdx.top()]] = nums2[i];
+                stIdx.pop();
+            }
+            stIdx.push(i);
         }
-        elem_stack.push(elem);
-    }
 
-    for (int i = 0; i < nums1.size(); i++){
-        if(greatMP.find(nums1[i])!= greatMP.end()) result[i] = greatMP[nums1[i]];
+        for(int i = 0; i < nums1.size(); i++){
+            if(grtMP.find(nums1[i])!=grtMP.end()) result[i] = grtMP[nums1[i]];
+        }
+        return result;
+        
     }
-    return result;
-
-  }
 };
