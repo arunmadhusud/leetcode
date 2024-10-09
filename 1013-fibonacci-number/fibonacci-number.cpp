@@ -19,11 +19,14 @@ class Solution {
 public:
     int fib(int n) {
         if(n<2) return n;
-        vector<int> table(n+1,0);
+        vector<int> table(2,0);
         table[1] = 1;
+        int prev;
         for(int i = 2; i <=n; i++){
-            table[i] = table[i-1]+table[i-2];
+            prev = table[1];
+            table[1] = table[0]+table[1];
+            table[0] = prev;
         }
-        return table[n];        
+        return table[1];        
     }
 };
