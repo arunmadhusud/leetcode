@@ -14,15 +14,18 @@ public:
 
         int x = n;
         int y = m;
+        string lcsStr = "";
 
         while(m>0 && n>0){
             if(dp[n][m-1] ==dp[n][m]) m=m-1;
             else{
-                cout << text2[m-1];
+                lcsStr += text2[m-1];
                 m = m-1;
                 n=n-1;
             }
         }
+        reverse(lcsStr.begin(), lcsStr.end());
+        cout << "LCS: " << lcsStr << endl;
 
         return dp[x][y];  
     }   
