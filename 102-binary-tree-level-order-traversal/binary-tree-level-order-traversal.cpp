@@ -12,38 +12,28 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> result;  // Corrected the type of result
-
-        if (root == nullptr) {
-            return result;  // Return empty result if root is null
-        }
-
-        queue<TreeNode*> Queue;
-        Queue.push(root);
-
-        while (!Queue.empty()) {
-            int currLevel = Queue.size();
-            vector<int> currResult;  // This holds the nodes at the current level
-
-            for (int i = 0; i < currLevel; i++) {
-                TreeNode* current = Queue.front();
-                Queue.pop();
-
-                // Push the current node's value into the current level result
-                currResult.push_back(current->val);
-
-                // Push left and right children into the queue if they exist
-                if (current->left != nullptr) {
-                    Queue.push(current->left);
-                }
-                if (current->right != nullptr) {
-                    Queue.push(current->right);
+        queue<TreeNode* > q;
+        vector<vector<int>> result;
+        if(root==nullptr) return {};
+        q.push(root);
+        result.push_back({root->val});
+        while(!q.empty()){
+            vector<int> level_val;
+            int n = q.size();
+            for(int i = 0; i < n; i++){
+                TreeNode* currNode = q.front();
+                q.pop();
+                if(currNode->left != nullptr){
+                    level_val.push_back(currNode->left->val);
+                    q.push(currNode->left);
+                } 
+                if(currNode->right != nullptr){
+                    level_val.push_back(currNode->right->val);
+                    q.push(currNode->right);
                 }
             }
-            // Add the current level's result to the final result
-            result.push_back(currResult);
+            if(level_val.size()>0) result.push_back(level_val);
         }
-
-        return result;
+        return result;        
     }
 };
