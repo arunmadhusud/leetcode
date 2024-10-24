@@ -18,11 +18,10 @@ public:
         
     }
     void inorderTraversal2(TreeNode* root,vector<int>& result) {
-        if (root!=nullptr){
-            if(root->left != nullptr) inorderTraversal2(root->left,result);
-            result.push_back(root->val);
-            if(root->right != nullptr) inorderTraversal2(root->right, result);
-        }
+        if (root==nullptr) return;
+        inorderTraversal2(root->left,result);
+        result.push_back(root->val);
+        inorderTraversal2(root->right, result);       
        
     }
 };
