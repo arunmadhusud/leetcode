@@ -3,49 +3,46 @@ public:
     string shortestCommonSupersequence(string str1, string str2) {
         int m = str1.size();
         int n = str2.size();
-        std::vector<std::vector<int>> dp(m + 1, std::vector<int>(n + 1, 0));
+        std::vector<std::vector<int>> dp(m+1, std::vector<int>(n+1,0));
 
-        // Compute the LCS DP table
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (str1[i - 1] == str2[j - 1]) {
-                    dp[i][j] = 1 + dp[i - 1][j - 1];
-                } else {
-                    dp[i][j] = std::max(dp[i - 1][j], dp[i][j - 1]);
-                }
+        for(int i = 1; i<=m; i++){
+            for(int j=1; j<=n;j++){
+                if(str1[i-1]==str2[j-1]) dp[i][j] =  1+dp[i-1][j-1];
+                else dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+            }
+        }
+        
+
+        string substr = "";
+        while(m>0 && n>0){
+            if(str1[m-1]==str2[n-1]){
+                substr += str1[m-1];
+                m--;
+                n--;
+            }
+            else if (dp[m-1][n]>dp[m][n-1])
+            {   
+                substr += str1[m-1];
+                m--;
+            }
+            else {
+                substr += str2[n-1];
+                n--;
             }
         }
 
-        // Construct the SCS
-        string scs = "";
-        int i = m, j = n;
-
-        while (i > 0 && j > 0) {
-            if (str1[i - 1] == str2[j - 1]) {
-                scs += str1[i - 1];
-                i--;
-                j--;
-            } else if (dp[i - 1][j] > dp[i][j - 1]) {
-                scs += str1[i - 1];
-                i--;
-            } else {
-                scs += str2[j - 1];
-                j--;
-            }
+        while (m > 0) {
+            substr += str1[m - 1];
+            m--;
         }
-
-        // Add remaining characters
-        while (i > 0) {
-            scs += str1[i - 1];
-            i--;
+        while (n > 0) {
+            substr += str2[n - 1];
+            n--;
         }
-        while (j > 0) {
-            scs += str2[j - 1];
-            j--;
-        }
+        std::reverse(substr.begin(),substr.end());
+        return substr;
 
-        // Reverse the result since it's built backward
-        reverse(scs.begin(), scs.end());
-        return scs;
+
+        
     }
 };
