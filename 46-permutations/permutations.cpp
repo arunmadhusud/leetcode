@@ -11,7 +11,7 @@ public:
     void recur(int index, vector<int>& nums, vector<int>& ds, vector<vector<int>>& ans, vector<bool>& freq) {
         if (ds.size() == nums.size()) {
             ans.push_back(ds);
-            return;
+            // return;
         }
 
         for (int i = 0; i < nums.size(); i++) {
