@@ -15,7 +15,7 @@ public:
             auto [stop,curr,cost] = q.front();
             q.pop();
             // int stop = curr.first;
-            if (stop>k) continue;
+            if (stop>k) break;
 
             for (auto elem : adj[curr]){
                 if(dist[elem.first]> cost+elem.second)
