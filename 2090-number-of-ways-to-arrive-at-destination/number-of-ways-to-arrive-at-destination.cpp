@@ -12,7 +12,7 @@ public:
 
         // Use long long for distance and path count to avoid overflow
         vector<long long> dst(n, LLONG_MAX);
-        vector<long long> paths(n, 0);
+        vector<int> paths(n, 0);
 
         // Initializing the source node
         dst[0] = 0;
