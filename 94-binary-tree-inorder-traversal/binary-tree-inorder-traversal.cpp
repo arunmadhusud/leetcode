@@ -13,15 +13,14 @@ class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> result;
-        inorderTraversal2(root,result);
-        return result;       
-        
+        DFS(result,root);
+        return result;        
     }
-    void inorderTraversal2(TreeNode* root,vector<int>& result) {
+
+    void DFS(vector<int>& result,TreeNode* root ){
         if (root==nullptr) return;
-        inorderTraversal2(root->left,result);
+        DFS(result,root->left);
         result.push_back(root->val);
-        inorderTraversal2(root->right, result);       
-       
+        DFS(result,root->right);
     }
 };
