@@ -32,10 +32,10 @@ public:
             }
         }
 
-        for (auto x_axis : mp){
+        for (const auto& x_axis : mp){
             vector<int> tmp;
-            for (auto level : x_axis.second){
-                for (auto e : level.second) tmp.push_back(e);
+            for (const auto& level : x_axis.second){
+                for (const auto& e : level.second) tmp.push_back(e);
             }
             
             result.push_back(tmp);
