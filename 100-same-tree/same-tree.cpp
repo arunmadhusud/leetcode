@@ -12,13 +12,23 @@
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        // If both are nullptr, the trees are the same (both are empty)
-        if (p == nullptr && q == nullptr) return true;
+        queue<TreeNode*> q1;
+        queue<TreeNode*> q2;
+        q1.push(p);
+        q2.push(q);
+        while(!q1.empty() && !q2.empty()){
+            TreeNode* p_curr = q1.front();
+            q1.pop();
+            TreeNode* q_curr = q2.front();
+            q2.pop();
+            if (p_curr==nullptr && q_curr==nullptr) continue;            
+            if (p_curr==nullptr || q_curr==nullptr || p_curr->val != q_curr->val) return false;
+            q1.push(p_curr->left);
+            q2.push(q_curr->left);
+            q1.push(p_curr->right);
+            q2.push(q_curr->right);      
 
-        // If one is nullptr and the other is not, trees are different
-        if (p == nullptr || q == nullptr) return false;
-
-        // Check if the current nodes are the same and recursively check left and right subtrees
-        return (p->val == q->val) && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+        }
+        return true;
     }
 };
