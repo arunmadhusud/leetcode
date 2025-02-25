@@ -12,36 +12,33 @@
 class Solution {
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
-        vector<vector<int>> result;
-        if(root==nullptr) return result;
-        map<int,map<int,multiset<int>>> mp;
-        queue<pair<TreeNode*,pair<int,int>>> q;
+        if (root==nullptr) return {};
+        std::vector<vector<int>> result;
+        std::map<int,std::map<int,vector<int>>> mp;
+        std::queue<std::pair<TreeNode*,std::pair<int,int>>> q;        
         q.push({root,{0,0}});
         while(!q.empty()){
-            pair<TreeNode*,pair<int,int>> curr = q.front();
+            auto curr = q.front();
             q.pop();
-            TreeNode* node = curr.first;
-            int x_axis = curr.second.first;
-            int level = curr.second.second;
-            mp[x_axis][level].insert(node->val);
-            if(node->left !=nullptr){
-                q.push({node->left,{x_axis-1,level+1}});
-            }
-            if(node->right !=nullptr){
-                q.push({node->right,{x_axis+1,level+1}});
-            }
+            TreeNode* currnode = curr.first;
+            int x = curr.second.first;
+            int y = curr.second.second;
+            mp[x][y].push_back(currnode->val);
+            if(currnode ->left != nullptr) q.push({currnode ->left,{x-1,y+1}});
+            if(currnode ->right != nullptr) q.push({currnode ->right,{x+1,y+1}});
         }
 
-        for (const auto& x_axis : mp){
-            vector<int> tmp;
-            for (const auto& level : x_axis.second){
-                for (const auto& e : level.second) tmp.push_back(e);
+        for (auto elem1 : mp){
+            std::vector<int> tmp;
+            for (auto elem2 : elem1.second){
+                std::sort(elem2.second.begin(),elem2.second.end());
+                tmp.insert(tmp.end(), elem2.second.begin(), elem2.second.end());
             }
-            
             result.push_back(tmp);
         }
 
         return result;
+
         
     }
 };
