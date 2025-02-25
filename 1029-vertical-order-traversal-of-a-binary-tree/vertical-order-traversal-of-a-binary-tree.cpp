@@ -28,11 +28,12 @@ public:
             if(currnode ->right != nullptr) q.push({currnode ->right,{x+1,y+1}});
         }
 
-        for (auto elem1 : mp){
+        for (auto cols : mp){
             std::vector<int> tmp;
-            for (auto elem2 : elem1.second){
-                std::sort(elem2.second.begin(),elem2.second.end());
-                tmp.insert(tmp.end(), elem2.second.begin(), elem2.second.end());
+            for (auto rows : cols.second){
+                std::vector<int> row_vec = rows.second;
+                std::sort(row_vec.begin(),row_vec.end());
+                tmp.insert(tmp.end(), row_vec.begin(), row_vec.end());
             }
             result.push_back(tmp);
         }
