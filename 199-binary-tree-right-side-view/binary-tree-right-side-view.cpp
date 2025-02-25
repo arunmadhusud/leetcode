@@ -12,25 +12,25 @@
 class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
+        if (root==nullptr) return {};
+        std::map<int,int> mp;
         vector<int> result;
-        if (root==nullptr) return result;
-        map<int,int> mp;
-        queue<pair<TreeNode*,int>> q;
-        q.push({root,0});
+        std::queue<TreeNode*> q;
+        q.push(root); 
+        int level = 0;       
         while(!q.empty()){
-            pair<TreeNode*,int> curr = q.front();
-            q.pop();
-            TreeNode* node = curr.first;
-            int level = curr.second;
-            mp[level] = node->val;
-            if(node->left !=nullptr) q.push({node->left,level+1});
-            if(node->right !=nullptr) q.push({node->right,level+1});
+            std::vector<int> tmp;
+            int k =  q.size();
+            for (int i=0; i< k; i++){
+                TreeNode* curr = q.front();
+                q.pop();
+                mp[level] = curr->val;
+                if(curr->left != nullptr) q.push(curr->left);
+                if(curr->right != nullptr) q.push(curr->right);
+            }
+            level++;
         }
-
-        for (const auto& elem : mp){
-            result.push_back(elem.second);
-        }
-
+        for (auto elem: mp) result.push_back(elem.second);
         return result;
         
     }
