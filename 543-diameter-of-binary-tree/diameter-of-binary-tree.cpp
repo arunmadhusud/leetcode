@@ -12,23 +12,19 @@
 class Solution {
 public:
     int diameterOfBinaryTree(TreeNode* root) {
-        int dia = -1;
-        int height = findHeight(root,dia);
-        return dia;        
+        int max_dia = INT_MIN;
+        int md = maxDepth(root,max_dia);  
+        return max_dia;      
+    }
+    int maxDepth(TreeNode* root, int& max_dia) {
+        int dia = 0;
+        if (root==nullptr) return  -1;
+        int leftHeight =  maxDepth(root->left,max_dia);
+        if (leftHeight >= 0) dia = dia + leftHeight + 1;
+        int rightHeight = maxDepth(root->right,max_dia);
+        if (rightHeight >= 0) dia = dia + rightHeight + 1;
+        max_dia = max(max_dia,dia);
+        return max(leftHeight,rightHeight) + 1;        
     }
 
-    // void findDiameter(TreeNode* root,int& dia){
-    //     int lh = findHeight(root->left);
-    //     int rh = findHeight(root->right);
-    //     dia = max(dia,lh+rh);
-    //     if(root->left!=nullptr) findDiameter(root->left,dia);
-    //     if(root->right!=nullptr)findDiameter(root->right,dia);
-    // }
-    int findHeight(TreeNode* root,int& dia){
-        if (root==nullptr) return 0;
-        int lh = findHeight(root->left,dia);
-        int rh = findHeight(root->right,dia);
-        dia = max(dia,lh+rh);
-        return max(lh,rh) +1;
-    }
 };
