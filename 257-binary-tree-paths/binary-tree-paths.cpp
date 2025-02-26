@@ -32,6 +32,6 @@ public:
         }
         if ((root->left))  pathUtil(root->left,pathVec,paths);
         if ((root->right)) pathUtil(root->right,pathVec,paths);
-        if(pathVec.size()!=1) pathVec.pop_back();
+        pathVec.pop_back();
     }
 };
