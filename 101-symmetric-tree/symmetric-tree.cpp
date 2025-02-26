@@ -13,14 +13,16 @@ class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
         if (root==nullptr) return true;
-        else return isSym(root->left, root->right);
+        return isSym(root->left,root->right);
         
     }
 
-    bool isSym(TreeNode* l, TreeNode* r){
-        if (l == nullptr && r == nullptr)  return true;
-        if (l == nullptr || r == nullptr)  return false;
-        if (l->val != r->val) return false;
-        return (isSym(l->left,r->right) && isSym(l->right,r->left));
+    bool isSym(TreeNode* p,TreeNode* q ){
+        if(!p && !q) return true;
+        if((!p && q) || (p && !q)) return false;
+        if(p->val!=q->val) return false;
+        // if ((p->left->val != q->right->val) || (p->right->val != q->left->val)) return false;
+        return isSym(p->left,q->right) && isSym(p->right,q->left);
+        
     }
 };
