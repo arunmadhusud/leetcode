@@ -13,28 +13,28 @@ class Solution {
 public:
     int widthOfBinaryTree(TreeNode* root) {
         if (root==nullptr) return 0;
-        queue<pair<TreeNode*,unsigned long long>> q;
-        q.push({root,0});
-        int maxWidth = 0;
+        int max_width = 0;
+        std::queue<std::pair<TreeNode*,long>> q;
+        q.push({root,0});        
         while(!q.empty()){
-            int k = q.size();
-            unsigned long long min_idx = q.front().second;
-            unsigned long long max_idx = q.back().second;
-            maxWidth = max(maxWidth,static_cast<int>(max_idx - min_idx+1));
-
-            for(int i = 0; i < k; i++){
-                pair<TreeNode*,unsigned long long> curr = q.front();
+            std::vector<long> tmp;
+            int k =  q.size();
+            long min_idx;;
+            for (int i=0; i< k; i++){
+                auto curr = q.front();
+                TreeNode* currNode = curr.first;
+                long idx = curr.second;
+                if (i==0) min_idx = idx;
+                idx -=min_idx;    
                 q.pop();
-                TreeNode* node = curr.first;
-                unsigned long long idx = curr.second;
-                idx -=min_idx;
-                if(node->left !=nullptr) q.push({node->left,2*idx+1});
-                if(node->right !=nullptr) q.push({node->right,2*idx+2});
-
+                if(currNode->left != nullptr) q.push({currNode->left, 2*idx+1});
+                if(currNode->right != nullptr) q.push({currNode->right, 2*idx+2});
+                tmp.push_back(idx);
             }
+            int width = tmp[tmp.size()-1] + 1;
+            max_width = max(width,max_width);
         }
-
-        return maxWidth;        
+        return max_width;
         
     }
 };
