@@ -12,16 +12,20 @@
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
-        vector<int> result;
-        inOrder(root, result);  // Perform in-order traversal to fill the result vector
-        return result[k - 1];   // Return the k-th smallest element
-    }
-    
-    void inOrder(TreeNode* current, vector<int>& result) {
-        if (current == nullptr) return;
+        std::priority_queue<int> pq;
+        for ( int i = 0; i<k; i++) pq.push(INT_MAX);
+        dfs(root,pq,k);
+        return pq.top();
         
-        inOrder(current->left, result);   // Traverse left subtree
-        result.push_back(current->val);   // Visit current node
-        inOrder(current->right, result);  // Traverse right subtree
+    }
+    void dfs(TreeNode* root,std::priority_queue<int>& pq,int& k ){
+        if (!root) return;
+        if (k < pq.size()) pq.push(root->val);
+        else if (root->val < pq.top()) {
+            pq.pop();
+            pq.push(root->val);
+        }
+        dfs(root->left,pq,k);
+        dfs(root->right,pq,k);
     }
 };
