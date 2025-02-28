@@ -28,7 +28,14 @@ public:
         if (!root) return false;
         result.push_back(root);
         if (root==p) return true;       
-        if (lca(root->left,p,result) || lca(root->right,p,result)) return true;
+        // if (lca(root->left,p,result) || lca(root->right,p,result)) return true;
+        if (root->val > p->val) {
+            if (lca(root->left,p,result)) return true;
+        }
+        else 
+        {
+            if (lca(root->right,p,result)) return true;
+        }
         result.pop_back();
         return false;
     }
