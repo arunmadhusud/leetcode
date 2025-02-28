@@ -33,19 +33,20 @@
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
-        int elem;
+        int elem = -1;  
         dfs(root, elem, k);
         return elem;      
-
     }
-    void dfs(TreeNode* root, int& elem, int& k){
-        if(!root) return;        
-        dfs(root->left,elem,k);
-        k--;        
-        if (k==0){
+
+    bool dfs(TreeNode* root, int& elem, int& k) {
+        if (!root) return false;   
+        if (dfs(root->left, elem, k)) return true;
+        k--;
+        if (k == 0) {
             elem = root->val;
-            return;
-        } 
-        dfs(root->right,elem,k);        
+            return true;
+        }
+        if(dfs(root->right, elem, k)) return true;
+        return false;
     }
 };
