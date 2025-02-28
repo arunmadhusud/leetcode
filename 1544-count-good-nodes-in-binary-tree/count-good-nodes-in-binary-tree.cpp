@@ -25,7 +25,8 @@ public:
     void dfs(TreeNode* root, std::vector<int>& pathVec, int& count ){
         if(!root) return;
         pathVec.push_back(root->val);
-        if (root->val >= findMax(pathVec)) count++;
+        auto maxIt = std::max_element(pathVec.begin(),pathVec.end());
+        if (root->val >= *maxIt) count++;
         dfs(root->left,pathVec,count);
         dfs(root->right,pathVec,count);
         pathVec.pop_back();
