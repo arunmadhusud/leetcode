@@ -22,12 +22,12 @@ public:
         for (auto elem : pathVec) max_elem = max(max_elem,elem);
         return max_elem;
     }
-    void dfs(TreeNode* root, std::vector<int> pathVec, int& count ){
+    void dfs(TreeNode* root, std::vector<int>& pathVec, int& count ){
         if(!root) return;
         pathVec.push_back(root->val);
         if (root->val >= findMax(pathVec)) count++;
         dfs(root->left,pathVec,count);
         dfs(root->right,pathVec,count);
-        // pathVec.pop_back();
+        pathVec.pop_back();
     }
 };
