@@ -1,9 +1,15 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        std::sort(s.begin(),s.end());
-        std::sort(t.begin(),t.end());
-        if(s==t) return true;
-        else return false;        
+        if(s.size()!=t.size()) return false;
+        std::vector<int> freq(26,0);
+        for(int i = 0; i<s.size(); i++){
+            freq[s[i]-'a']++;
+            freq[t[i]-'a']--;
+        }
+        for(int i = 0; i< freq.size(); i++){
+            if(freq[i]!=0) return false;
+        }
+        return true;       
     }
 };
