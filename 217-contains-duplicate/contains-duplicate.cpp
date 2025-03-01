@@ -1,15 +1,12 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        unordered_set<int> num_set;
-        for (int i = 0; i < nums.size(); i++)
-        {
-            num_set.insert(nums[i]);
+        std::unordered_set<int> st;
+        for(int i = 0; i < nums.size(); i++){
+            if(st.find(nums[i])==st.end()) st.insert(nums[i]);
+            else return true;
         }
-        if(num_set.size()!= nums.size())
-        {
-            return true;
-        }
-        return false;        
+        return false;
+        
     }
 };
