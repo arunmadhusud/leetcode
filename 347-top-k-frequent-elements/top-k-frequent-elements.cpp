@@ -7,9 +7,6 @@ public:
         for(int i =0; i< nums.size(); i++){
             mp[nums[i]]++;
         }
-        for (const auto &elem : mp) {
-            std::cout << elem.first << " -> " << elem.second << std::endl;
-        }
         for(auto it=mp.begin();it!=mp.end();it++){
             pq.push({it->second,it->first});
         }
