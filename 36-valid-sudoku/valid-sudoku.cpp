@@ -11,7 +11,7 @@ public:
                 if (elem == '.') continue;
                 else{
                     if(r_map[i].find(elem)!=r_map[i].end()) return false;
-                    if(c_map[j].find(elem)!=c_map[i].end()) return false;
+                    if(c_map[j].find(elem)!=c_map[j].end()) return false;
                     int r = i/3;
                     int c = j/3;
                     if(rc_map[{r,c}].find(elem)!=rc_map[{r,c}].end()) return false;
