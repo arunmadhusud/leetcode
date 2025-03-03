@@ -13,14 +13,11 @@ public:
     }
     
     void pop() {
-        if(!st.empty()) st.pop();
-      
-        
+         st.pop();   
     }
-    
+
     int top() {
-        if(!st.empty()) return st.top().first;
-        else return -1;        
+        return st.top().first;      
     }
     
     int getMin() {
