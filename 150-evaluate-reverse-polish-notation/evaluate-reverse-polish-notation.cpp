@@ -1,21 +1,21 @@
 class Solution {
 public:
     int evalRPN(vector<string>& tokens) {
-        std::stack<string> st;
+        std::stack<int> st;
         for(auto elem : tokens){
             if(elem== "+" || elem=="-" || elem=="*" || elem=="/"){
-                int b = stoi(st.top());
+                int b = st.top();
                 st.pop();
-                int a = stoi(st.top());
+                int a = st.top();
                 st.pop();
-                if(elem=="+") st.push(to_string(a+b));
-                if(elem=="-") st.push(to_string(a-b));
-                if(elem=="*") st.push(to_string(a*b));
-                if(elem=="/") st.push(to_string(a/b));
+                if(elem=="+") st.push(a+b);
+                if(elem=="-") st.push(a-b);
+                if(elem=="*") st.push(a*b);
+                if(elem=="/") st.push(a/b);
             }
-            else st.push(elem);
+            else st.push(stoi(elem));
         }
-        return stoi(st.top());       
+        return st.top();       
         
     }
 };
