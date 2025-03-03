@@ -1,21 +1,24 @@
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        std::vector<int> result;
+    vector<int> twoSum(vector<int>& numbers, int target) {
         int i = 0;
-        int j = nums.size()-1;
-        while(i < j)
-        {
-            if (nums[i] + nums[j] == target)
-            {
+        int j = numbers.size()-1;
+        vector<int> result;
+
+        while(i<j){
+            int sum = numbers[i]+numbers[j];
+            if(sum == target) {
                 result.push_back(i+1);
                 result.push_back(j+1);
-                return result;
+                break;
             }
-            else if (nums[i] + nums[j] > target) j--;
-            else if (nums[i] + nums[j] < target) i++;
+
+            if (sum > target) j--;
+            if (sum < target) i++;
         }
+
         return result;
+
         
     }
 };
