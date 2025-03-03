@@ -13,8 +13,8 @@ public:
                 break;
             }
 
-            if (sum > target) j--;
-            if (sum < target) i++;
+            else if (sum > target) j--;
+            else i++;
         }
 
         return result;
