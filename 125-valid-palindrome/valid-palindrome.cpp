@@ -7,11 +7,12 @@ public:
                 s_new+=tolower(ch);
             } 
         }
-        // std::cout << s_new;
         int i = 0;
-        int j = s_new.size()-1;
+        int j = s.size()-1;
         while(i<j){
-            if(s_new[i]!=s_new[j]) return false;
+            while(i <j && !isalnum(s[i])) i++;
+            while(i <j && !isalnum(s[j])) j--;
+            if(tolower(s[i])!=tolower(s[j])) return false;
             i++;
             j--;
         }
