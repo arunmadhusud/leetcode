@@ -9,9 +9,9 @@ public:
                 int a = st.top();
                 st.pop();
                 if(elem=="+") st.push(a+b);
-                if(elem=="-") st.push(a-b);
-                if(elem=="*") st.push(a*b);
-                if(elem=="/") st.push(a/b);
+                else if(elem=="-") st.push(a-b);
+                else if(elem=="*") st.push(a*b);
+                else if(elem=="/") st.push(a/b);
             }
             else st.push(stoi(elem));
         }
