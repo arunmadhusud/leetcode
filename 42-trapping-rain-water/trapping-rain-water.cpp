@@ -21,19 +21,21 @@ public:
         vector<int> prefixMax(height.size(),0);
         vector<int> suffixMax(height.size(),0);
         prefixMax[0] = height[0];
-        for(int i = 1; i<height.size(); i++){
-            prefixMax[i] = max(prefixMax[i-1],height[i]);         
-        }
+        // for(int i = 1; i<height.size(); i++){
+        //     prefixMax[i] = max(prefixMax[i-1],height[i]);         
+        // }
         suffixMax[height.size()-1] = height[height.size()-1];
         for(int j = height.size()-2; j>=0; j--){
             suffixMax[j] = max(suffixMax[j+1],height[j]);         
         }
         int vol = 0;
+        int maxLeft = height[0];
         for(int i = 1; i < height.size()-1; i++) {
-            int maxLeft = prefixMax[i-1];
+            // int 
+            // int maxLeft = prefixMax[i-1];
+            maxLeft = max(maxLeft,height[i]);
             int maxRight = suffixMax[i+1];
             int water = min(maxLeft, maxRight) - height[i];
-
             if (water > 0) vol += water;
         }
         return vol;
