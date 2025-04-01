@@ -6,11 +6,11 @@ public:
         vector<int> res(nums1.size(),-1);
 
         for(int i = nums2.size()-1 ; i >=0 ; i--){
-            while (!mon_st.empty() && mon_st.top() <= nums2[i]){
+            while (!mon_st.empty() && nums2[mon_st.top()] <= nums2[i]){
                 mon_st.pop();
             }
-            nge_map[nums2[i]] = mon_st.empty() ? -1 : mon_st.top();
-            mon_st.push(nums2[i]);
+            nge_map[nums2[i]] = mon_st.empty() ? -1 : nums2[mon_st.top()];
+            mon_st.push(i);
         }
         for (int i = 0; i < nums1.size() ; i++)
         {
