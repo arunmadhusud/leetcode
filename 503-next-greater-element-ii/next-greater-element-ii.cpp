@@ -7,11 +7,11 @@ public:
         int n = nums.size();
         for(int idx = 2*n-1 ; idx >=0 ; idx--){
             int i = idx % n;
-            while (!mon_st.empty() && mon_st.top() <= nums[i]){
+            while (!mon_st.empty() && nums[mon_st.top()] <= nums[i]){
                 mon_st.pop();
             }
-            if(idx < n) res[i] = mon_st.empty() ? -1 : mon_st.top();
-            mon_st.push(nums[i]);
+            if(idx < n) res[i] = mon_st.empty() ? -1 : nums[mon_st.top()];
+            mon_st.push(i);
         }
 
         return res;
