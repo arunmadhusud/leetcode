@@ -61,10 +61,10 @@ public:
         int n = intervals.size();
         int i = 0;
 
-        if (intervals.size()==0) {
-            result.push_back(newInterval);
-            return result;
-        }
+        // if (intervals.size()==0) {
+        //     result.push_back(newInterval);
+        //     return result;
+        // }
 
         while(i < n && intervals[i][1] < newInterval[0]){
             result.push_back(intervals[i]);
