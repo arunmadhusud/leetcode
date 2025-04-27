@@ -1,34 +1,33 @@
 class Solution {
 public:
-    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        vector<vector<int>> adj(numCourses);
-        
-        for(int i = 0; i < prerequisites.size(); i++){
-            adj[prerequisites[i][0]].push_back(prerequisites[i][1]);
-        }
-        std::vector<int> indegree(numCourses,0);
-        for(int i = 0; i < prerequisites.size(); i++){
-            indegree[prerequisites[i][1]]++;
-        }
+    bool canFinish(int V, vector<vector<int>>& prerequisites) {
 
+        vector<vector<int>> adj_list(V);
+        vector<int> indegree(V,0);
         std::queue<int> q;
-        for(int i = 0; i<numCourses;i++){
-            if(indegree[i]==0) q.push(i);
+        
+        for(int i = 0; i<prerequisites.size(); i++){
+            adj_list[prerequisites[i][0]].push_back(prerequisites[i][1]);
+            indegree[prerequisites[i][1]] ++;
         }
         
-        int count=0;
-        while(!q.empty()){
-            int curr = q.front();
-            q.pop();
-            for (int elem : adj[curr]){
-                indegree[elem]--;
-                if(indegree[elem]==0) q.push(elem);
-            }
-            count++;
+        for (int i = 0; i<V; i++) {
+            if (indegree[i]==0) q.push(i);
         }
-
-        return count==numCourses;
-
+        
+        std::vector<int> topo;
+        while(!q.empty()){
+            int curr =  q.front();
+            q.pop();
+            topo.push_back(curr);
+            for (int elem : adj_list[curr]){
+                indegree[elem]--;
+                if (indegree[elem]==0) q.push(elem);
+            }
+        }
+        
+        if(topo.size()!=V) return false;
+        return true;
         
     }
 };
