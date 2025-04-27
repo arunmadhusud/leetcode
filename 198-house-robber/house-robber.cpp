@@ -7,9 +7,10 @@ public:
             else if (i == 1) dp[1] = max(nums[0],nums[1]);
             else dp[i] = max(nums[i]+dp[i-2],dp[i-1]);
         }
-        int max_v = INT_MIN;
-        for (int elem : dp) max_v = max(max_v,elem);
-        return max_v;
+        // int max_v = INT_MIN;
+        // for (int elem : dp) max_v = max(max_v,elem);
+        // return max_v;
+        return dp[nums.size()-1];
         
     }
 };
