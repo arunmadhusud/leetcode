@@ -12,10 +12,11 @@ public:
                 l++;
             }
             if (char_set.find(s[r])==char_set.end()){
-                max_len = max(max_len,r-l+1);
                 char_set.insert(s[r]);
+                r++;
             }
-            r++;
+            max_len = max((int)char_set.size(),max_len);
+            
         }
         return max_len;
         
