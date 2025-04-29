@@ -7,11 +7,8 @@ public:
         int n = prices.size();
 
         while(r < n){
-            if (prices[r] < prices[l]) {
-                l = r; 
-            } else {
-                max_profit = max(max_profit, prices[r] - prices[l]);
-            }
+            if (prices[r] < prices[l]) l=r;
+            else max_profit = max(max_profit, prices[r] - prices[l]);
             r++;
         }
 
