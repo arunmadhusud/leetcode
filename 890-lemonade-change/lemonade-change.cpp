@@ -1,32 +1,31 @@
 class Solution {
 public:
     bool lemonadeChange(vector<int>& bills) {
-        std::unordered_map<int,int> count;
-        count[5] = 0;
-        count[10] = 0;
-        count[20] = 0;
+        int count_5 = 0;
+        int count_10 = 0;
+        int count_20 = 0;
         for (int i = 0; i < bills.size(); i++){
-            if(bills[i]==5) count[5]++;
+            if(bills[i]==5) count_5++;
             if(bills[i]==10){
-                if(!count[5]) return false;
+                if(!count_5) return false;
                 else{
-                    count[10]++;
-                    count[5]--;
+                    count_10++;
+                    count_5--;
                 }
             }
             if(bills[i]==20){
-                if(count[10] && count[5]){
-                    count[10]--;
-                    count[5]--;
-                    count[20]++;
+                if(count_10 && count_5){
+                    count_10--;
+                    count_5--;
+                    count_20++;
                 }
-                else if(count[5]>2){
+                else if(count_5>2){
                     int i = 0;
                     while(i<3){
-                        count[5]--;
+                        count_5--;
                         i++;
                     }
-                    count[20]++;
+                    count_20++;
                 }
                 else return false;
             }
