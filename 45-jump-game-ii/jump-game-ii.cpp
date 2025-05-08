@@ -1,19 +1,51 @@
-// True DP(bottom up)
 class Solution {
 public:
     int jump(vector<int>& nums) {
         int n = nums.size();
-        vector<int> dp(n,INT_MAX);
-        dp[0] = 0;
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
-                if(j <= i + nums[i]) dp[j] = min(dp[j],1+dp[i]);
+        if(n<=1) return 0;       
+        int start = 0;
+        int end = 0;
+        int jumps = 0;
+        int farthest = 0;
+        int prevfarthest = -1;
+        while(end <= n -1){
+            for (int i = start; i <= end; i++){
+                farthest = max(farthest, i + nums[i]);
+                if(farthest >= n-1 ){
+                    return jumps+1;
+                }
             }
+            if(farthest==prevfarthest) return -1;
+            start = end + 1;
+            end = farthest;
+            jumps++;
         }
-        return dp[n-1];
+        return jumps;
 
     }
 };
+
+
+
+
+
+
+// True DP(bottom up)
+// class Solution {
+// public:
+//     int jump(vector<int>& nums) {
+//         int n = nums.size();
+//         vector<int> dp(n,INT_MAX);
+//         dp[0] = 0;
+//         for(int i = 0; i < n; i++){
+//             for(int j = 0; j < n; j++){
+//                 if(j <= i + nums[i]) dp[j] = min(dp[j],1+dp[i]);
+//             }
+//         }
+//         return dp[n-1];
+
+//     }
+// };
 
 
 
