@@ -1,26 +1,31 @@
-bool comp(const vector<int>&A,const vector<int>&B ){
-    return A[0]<B[0];
-}
+
 
 class Solution {
 public:
-
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
-        intervals.push_back(newInterval);
-        sort(intervals.begin(),intervals.end(),comp);
+        int i = 0;
+        int n = intervals.size();
         vector<vector<int>> result;
-        if(intervals.size()<=1) return intervals;        
-        int start = intervals[0][0];
-        int end = intervals[0][1];
-        for (int i = 1; i < intervals.size(); i++){                        
-            if(intervals[i][0] > end){
-                result.push_back({start,end});
-                start = intervals[i][0];
-                end = intervals[i][1];                
-            }
-            else end = max(end,intervals[i][1]);        
+        
+        
+        while(i < n && intervals[i][1]<newInterval[0]){
+            result.push_back(intervals[i]);
+            i++;
         }
-        result.push_back({start,end});
+
+        while(i<n && intervals[i][0] <= newInterval[1]  ){
+            newInterval[0] = min(newInterval[0],intervals[i][0]);
+            newInterval[1] = max(newInterval[1],intervals[i][1]);
+            i++;
+        }
+
+        result.push_back(newInterval);
+
+        while (i < n) {
+            result.push_back(intervals[i]);
+            i++;
+        }
+
         return result;         
     }
 };
