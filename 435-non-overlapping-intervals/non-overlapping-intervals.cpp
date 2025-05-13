@@ -9,14 +9,14 @@ public:
         if(intervals.size()==0) return 0;
         sort(intervals.begin(),intervals.end(),comp);
         int endRange = intervals[0][1];
-        int count = 1;
+        int count = 0;
         for(int i = 1; i < intervals.size(); i++){
             if(intervals[i][0]>=endRange){
-                count++;
                 endRange = intervals[i][1];
             }
+            else count++;
         }
-        return n-count;        
+        return count;        
         
     }
 };
