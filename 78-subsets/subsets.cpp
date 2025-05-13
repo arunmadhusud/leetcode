@@ -7,12 +7,15 @@ public:
         return ans;
     }
 
-    void recur(int index, std::vector<int>& nums, std::vector<std::vector<int>>& ans, std::vector<int>& ds) {
-        ans.push_back(ds);
-        for (int i = index; i < nums.size(); i++) {            
-            ds.push_back(nums[i]);        
-            recur(i + 1, nums, ans, ds); 
-            ds.pop_back();
+    void recur(int index, std::vector<int>& nums, std::vector<std::vector<int>>& ans, std::vector<int>& ds) {        
+        if(index==nums.size()){
+            ans.push_back(ds);
+            return;
         }
+        ds.push_back(nums[index]);
+        recur(index + 1, nums, ans, ds);
+        ds.pop_back(); 
+        recur(index + 1, nums, ans, ds);
+    
     }
 };
