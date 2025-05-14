@@ -6,9 +6,11 @@ public:
         vector<int> indegree(V,0);
         std::queue<int> q;
         
-        for(int i = 0; i<prerequisites.size(); i++){
-            adj_list[prerequisites[i][0]].push_back(prerequisites[i][1]);
-            indegree[prerequisites[i][1]] ++;
+        for (int i = 0; i < prerequisites.size(); i++) {
+            int a = prerequisites[i][0];
+            int b = prerequisites[i][1];
+            adj_list[b].push_back(a);   
+            indegree[a]++; 
         }
         
         for (int i = 0; i<V; i++) {
