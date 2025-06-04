@@ -37,7 +37,9 @@ public:
         {
             current->next = list2; 
         }
-        return merged_list->next;
+        ListNode* head = merged_list->next;
+        delete merged_list;
+        return head;
         
     }
 };
