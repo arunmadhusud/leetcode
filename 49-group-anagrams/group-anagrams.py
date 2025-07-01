@@ -9,7 +9,9 @@ class Solution:
             for c in s:
                 freq[ord(c)-ord('a')] +=1
 
-            key = '#'.join(str(f) for f in freq)
+            key = ""
+            for f in freq:
+                key += str(f) +'#'
             
             if key not in mp:
                 mp[key] = []
