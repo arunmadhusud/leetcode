@@ -6,13 +6,7 @@ class Solution:
             freq = [0] * 26
             for c in s:
                 freq[ord(c)-ord('a')] +=1
-                
-            key = ""
-            for f in freq:
-                key += str(f) +'#'
-            
-            mp[key].append(s)
-
+            mp[tuple(freq)].append(s)
            
         return list(mp.values())
         
