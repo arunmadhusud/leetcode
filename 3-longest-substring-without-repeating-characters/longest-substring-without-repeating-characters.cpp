@@ -11,10 +11,10 @@ public:
                 char_set.erase(s[l]);
                 l++;
             }
-            if (char_set.find(s[r])==char_set.end()){
-                char_set.insert(s[r]);
-                r++;
-            }
+            
+            char_set.insert(s[r]);
+            r++;
+
             max_len = max((int)char_set.size(),max_len);
             
         }
