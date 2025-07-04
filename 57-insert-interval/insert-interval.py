@@ -15,11 +15,11 @@ class Solution:
         
         result.append(newInterval)
 
-        while i < n :
-            result.append(intervals[i])
-            i+=1
+        # while i < n :
+        #     result.append(intervals[i])
+        #     i+=1
 
-        return result      
+        return result + intervals[i:]      
 
 
 
