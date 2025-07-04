@@ -9,7 +9,7 @@ public:
         std::unordered_map<char,int> freq_mp;
         while(r < s.size()){
             freq_mp[s[r]]++;
-            for(const auto& elem : freq_mp) max_f = max(max_f,elem.second);
+            max_f = max(max_f,freq_mp[s[r]]);
             length = r-l+1;
             while(length - max_f > k && l<=r){
                 freq_mp[s[l]]--;
