@@ -9,12 +9,16 @@ class Solution:
 
             window_size = right - left + 1
 
-            while window_size - max_freq > k and left <= right:
+            # while window_size - max_freq > k and left <= right:
+            #     freq[s[left]] -=1
+            #     left +=1
+            #     window_size = right - left + 1
+            #     max_freq = max(freq.values()) if freq else 0
+
+
+            if window_size - max_freq > k and left <= right:
                 freq[s[left]] -=1
                 left +=1
-                window_size = right - left + 1
-                max_freq = max(freq.values()) if freq else 0
-
             
             max_length = max(max_length,right - left + 1)
         
