@@ -4,17 +4,15 @@ class Solution:
         pq = [-val for val in freq.values()]
         heapq.heapify(pq)
         time = 0
-        queue = []
+        queue = deque()
         while pq or queue:
             time+=1
             if pq:
-                count = pq[0]
-                heapq.heappop(pq)
+                count = heapq.heappop(pq)                
                 if count+1 != 0:
                     queue.append([time+n,count+1])
             while queue and queue[0][0]==time:
-                heapq.heappush(pq, queue[0][1])
-                queue.pop(0)
+                heapq.heappush(pq, queue.popleft()[1])            
 
         
         return time
