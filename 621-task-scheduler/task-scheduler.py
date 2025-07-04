@@ -1,9 +1,8 @@
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         freq = Counter(tasks)
-        pq = []
-        for task,count in freq.items():
-            heapq.heappush(pq,-count)
+        pq = [-val for val in freq.values()]
+        heapq.heapify(pq)
         time = 0
         queue = []
         while pq or queue:
