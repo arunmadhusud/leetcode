@@ -9,9 +9,11 @@ class Solution:
 
             window_size = right - left + 1
 
-            if window_size - max_freq > k:
+            while window_size - max_freq > k:
                 freq[s[left]] -=1
                 left +=1
+                window_size = right - left + 1
+                
             
             max_length = max(max_length,right - left + 1)
         
