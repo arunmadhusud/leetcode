@@ -11,7 +11,7 @@ class Solution:
                 count = heapq.heappop(pq)                
                 if count+1 != 0:
                     queue.append([time+n,count+1])
-            while queue and queue[0][0]==time:
+            if queue and queue[0][0]==time:
                 heapq.heappush(pq, queue.popleft()[1])            
 
         
